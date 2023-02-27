@@ -207,17 +207,17 @@ function App() {
       if (fulfillDetails.status === "fulfilled") {
         return (
           <div key={index}>
-            <div>{index} - {fullfilled.value.credentialSubject.provider} - {fullfilled.value.issuanceDate} - {fullfilled.value.expirationDate}</div>
+            <h5>{fullfilled.value.credentialSubject.provider}</h5>
+            <div>{fullfilled.value.credentialSubject.provider} - {fullfilled.value.issuanceDate} - {fullfilled.value.expirationDate}</div>
             {/* <div>Status: {JSON.stringify(fullfilled.value, undefined, 2)}</div> */}
           </div>
         );
       } else {
         return (
           <div key={index}>
-            <h4>Ok</h4>
-            <div>Status: {rejected.status}</div>
-            <div>Status: {rejected.reason.message}</div>
-            <code>Status: {JSON.stringify(rejected.reason.response.data, undefined, 2)}</code>
+            <h5>{index} - ???</h5>
+            <div>{rejected.status} - {rejected.reason.message}</div>
+            <code>Status: {JSON.stringify(rejected.reason.response.data, null, 2)}</code>
           </div>
         );
       }
@@ -227,14 +227,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>Check your Passport</p>
         <input
           value={addressToVerify}
           onChange={(e) => setAddressToVerify(e.target.value)}
         ></input>
         <button onClick={handleVerify}>Verify</button>
-        <a
+        {/* <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
@@ -242,11 +241,11 @@ function App() {
         >
           Check your Passport
         </a>
-        <button onClick={handleConnect}>Connect</button>
+        <button onClick={handleConnect}>Connect</button> */}
       </header>
       <h1>Stamps</h1>
+      <h5>Number of stamps: {stampDetailsComponent.length} </h5>
       {stampDetailsComponent}
-      {stampDetailsComponent.length}
     </div>
   );
 }
